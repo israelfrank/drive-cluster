@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication-deployment
+  labels:
+    app: authentication-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authentication-service
+  template:
+    metadata:
+      labels:
+        app: authentication-service
+    spec:
+      containers:
+      - name: authentication
+        image: israel.azurecr.io/authentication-service/master:37a2610
+        env:
+        -  name:  PORT
+           value: '8080'
+        -  name:  SERVER_ENDPOINT
+           value: 'http://localhost:8080/auth'
+        -  name:  ALLOWED_ORIGINS
+           value: 'http://localhost/'
+        -  name:  USERS_RPC_ENDPOINT
+           value: 'http://localhost:50051'
+        -  name:  SECRET_KEY
+           value: 'pandora@drive'
+        -  name:  TOKEN_DAYS_EXPIRES
+           value: '30'
+        -  name:  SAML_ENTRY_POINT
+           value: 'http://localhost:8085/simplesaml/saml2/idp/SSOService.php'
+        -  name:  SAML_ISSUER
+           value: 'http://localhost:8084/auth/metadata.xml'
+        -  name:  SAML_CALLBACK_URL
+           value: 'http://localhost:8084/auth/metadata.xml/callback'
+        -  name:  CLIENT_ENDPOINT
+           value: 'http://localhost'
+        -  name:  SHRAGA_URL
+           value: 'http://shrugshrug'
+        -  name:  STRATEGY
+           value: 'shraga'
+        -  name: MONGODB_NAME
+           value: 'shraga-proxy'
+        -  name: UNAUTHORIZED_SUPPORT_URL
+           value: 'https://open.rocket.chat'
+        ports:
+        - name: auth-port 
+          containerPort: 8080
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+      - name: keyforaks   
+       

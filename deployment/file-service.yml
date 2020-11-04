@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-deployment
+  labels:
+    app: file-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-service
+  template:
+    metadata:
+      labels:
+        app: file-service
+    spec:
+      containers:
+      - name: file
+        image: israel.azurecr.io/file-service/master:083597c
+        env:
+        -  name:  BIND_ADDRESS
+           value: '0.0.0.0:8080'
+        -  name: ELASTICSEARCH_URL
+           value: 'http://localhost:9200'
+        -  name:  ELASTICSEARCH_USER
+           value: ''
+        -  name:   ELASTICSEARCH_PASSWORD
+           value: ''
+        -  name:   LOG_INDEX
+           value:  'kdrive'
+        -  name:   APM_SECRET_TOKEN
+           value: ''
+        -  name:   FS_APM_SERVICE_NAME
+           value: 'file-service'
+        -  name:   ELASTIC_APM_VERIFY_SERVER_CERT
+           value: 'false'
+        -  name:  ELASTIC_APM_SERVER_URL
+           value: 'http://localhost:8200'
+        -  name:  USER_QUOTA_LIMIT
+           value: '10'
+        -  name:  NODE_ENV
+           value: 'dev'
+        -  name:  DEBUG_MODE
+           value: 'false'
+        -  name: RECONNECT_ATTEMPTS
+           value: '5'
+        -  name: RECONNECT_TIMEOUT
+           value: '2000'
+        -  name: MONGO_HOST
+           value: 'mongodb://mongo:27017/devDB'     
+        ports:
+        - name: file-port 
+          containerPort: 8080
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+      - name: keyforaks   
+       

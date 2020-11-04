@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-deployment
+  labels:
+    app: user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+      - name: user
+        image: israel.azurecr.io/user-service/master:ec66b9f
+        env:
+        -  name:  DEBUG_MODE
+           value: "false"
+        -  name: ELASTIC_APM_SERVER_URL
+           value: "http://localhost:8200"
+        -  name:  ELASTICSEARCH_URL
+           value: "http://localhost:9200"
+        -  name:   KARTOFFEL_URL
+           value: "http://kartoffel-master.eastus.cloudapp.azure.com:3001"
+        -  name:   SPIKE_SERVICE_URL
+           value:  "spike-service:8080"
+        -  name:    RPC_PORT
+           value: '8080'
+        -  name:   SPIKE_REQUIRED
+           value: 'true'
+        -  name:   GRANT_TYPE
+           value: "client_credentials"
+        -  name:  AUDIENCE
+           value: 'kartoffel'
+        -  name:  US_APPROVAL_URL
+           value: "http://23.102.32.203/api/v1"
+        -  name: DOMAINUSERS_QUERY
+           value: "nonExternals"
+        ports:
+        - name: user-port 
+          containerPort: 8080
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+      - name: keyforaks   
+       
