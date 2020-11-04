@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: icu-config
+  namespace: default
+data:
+    YOSEF: yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+    YOSEF1: kjhkjhk
+    YOSEF2: noGoodRotten
+    YOSEF3: UUDDLRLRBABAS
+    YOSEF4: lkjhglkjh
+
