@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: busy
+  labels: 
+    app: busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          volumeMounts:
+            - mountPath: /etc/config
+              name: test-volume
+          command: ["/bin/sh"]
+          args: ["-c","sleep 8000"]
+          envFrom:
+          - configMapRef:
+              name: icu-config      
+      volumes:
+        - name: test-volume
+          configMap:
+            name: icu-config    
