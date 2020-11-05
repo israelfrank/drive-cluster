@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: permit-deployment
+  name: permission-deployment
   labels: 
-    app: permit-service 
+    app: permission-service 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: permit-service
+      app: permission-service
   template:
     metadata:
       labels:
-        app: permit-service
+        app: permission-service
     spec:
       containers:
-      - name: permit-container 
-        image: israel.azurecr.io/permit-service/master:744637b 
+      - name: permission-container 
+        image: israel.azurecr.io/permission-service/master:769171f
         ports:
-        - name: permit-port
+        - name: permision-port
           containerPort: 8080
         envFrom:
           - configMapRef:
@@ -26,4 +26,4 @@ spec:
               optional: true
         imagePullPolicy: IfNotPresent
       imagePullSecrets:
-      - name: keyforaks 
+      - name: keyforaks

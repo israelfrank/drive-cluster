@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: permit-deployment
+  name: download-deployment
   labels: 
-    app: permit-service 
+    app: download-service 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: permit-service
+      app: download-service
   template:
     metadata:
       labels:
-        app: permit-service
+        app: download-service
     spec:
       containers:
-      - name: permit-container 
-        image: israel.azurecr.io/permit-service/master:744637b 
+      - name: download-container 
+        image: israel.azurecr.io/download-service/master:8c43c86
         ports:
-        - name: permit-port
+        - name: download-ports
           containerPort: 8080
         envFrom:
           - configMapRef:
@@ -26,4 +26,4 @@ spec:
               optional: true
         imagePullPolicy: IfNotPresent
       imagePullSecrets:
-      - name: keyforaks 
+      - name: keyforaks
