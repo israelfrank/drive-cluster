@@ -15,8 +15,13 @@ spec:
         app: drive-service
     spec:
       containers:
+<<<<<<< HEAD:deployment/drive-ui.yml
       - name: drive-container 
         image: israel.azurecr.io/drive-ui/master:38121da
+=======
+      - name: permit-container 
+        image: israel.azurecr.io/permit-service/master:744637b 
+>>>>>>> yosef:deployment/permit-service.yaml
         ports:
         - name: drive-port
           containerPort: 8080
