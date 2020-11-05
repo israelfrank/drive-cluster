@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: upload-deployment
+  name: delegation-deployment
   labels: 
-    app: upload-service 
+    app: delegation-service 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: upload-service
+      app: delegation-service
   template:
     metadata:
       labels:
-        app: upload-service
+        app: delegation-service
     spec:
       containers:
-      - name: upload-container 
-        image: israel.azurecr.io/upload-service/master:1d1fb04
+      - name: delegation-container 
+        image: israel.azurecr.io/delegation-service/master:133164d
         ports:
-        - name: upload-ports
+        - name: delegation-ports
           containerPort: 8080
         envFrom:
           - configMapRef:
@@ -26,4 +26,4 @@ spec:
               optional: true
         imagePullPolicy: IfNotPresent
       imagePullSecrets:
-      - name: keyforaks  
+      - name: keyforaks 
