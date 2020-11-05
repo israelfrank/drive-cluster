@@ -1,25 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: file-deployment
+  name: drive-deployment
   labels: 
-    app: file-service 
+    app: drive-service 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: file-service
+      app: drive-service
   template:
     metadata:
       labels:
-        app: file-service
+        app: drive-service
     spec:
       containers:
-      - name: file-container 
-        image: israel.azurecr.io/file-service/master:083597c
-        image: israel.azurecr.io/authentication-service/master:37a2610
+      - name: drive-container 
+        image: israel.azurecr.io/drive-ui/master:38121da
         ports:
-        - name: file-port
+        - name: drive-port
           containerPort: 8080
         envFrom:
           - configMapRef:
@@ -27,5 +26,4 @@ spec:
               optional: true
         imagePullPolicy: IfNotPresent
       imagePullSecrets:
-      - name: keyforaks   
-       
+      - name: keyforaks 
