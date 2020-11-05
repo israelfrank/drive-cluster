@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: permit-service
+spec:
+  selector:
+    app: permit-service
+  ports:
+    - protocol: TCP
+      port: 93
+      targetPort: 8080
+  type: NodePort
