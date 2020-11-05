@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: permit-deployment
+  labels: 
+    app: permit-service 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: permit-service
+  template:
+    metadata:
+      labels:
+        app: permit-service
+    spec:
+      containers:
+      - name: permit-container 
+        image: israel.azurecr.io/permit-service/master:744637b 
+        ports:
+        - name: permit-port
+          containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: kd-config
+              optional: true
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+      - name: keyforaks 

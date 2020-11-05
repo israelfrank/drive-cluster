@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: download-deployment
+  labels: 
+    app: download-service 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: download-service
+  template:
+    metadata:
+      labels:
+        app: download-service
+    spec:
+      containers:
+      - name: download-container 
+        image: israel.azurecr.io/download-service/master:8c43c86
+        ports:
+        - name: download-ports
+          containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: kd-config
+              optional: true
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+      - name: keyforaks
