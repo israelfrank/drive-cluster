@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth-container 
-        image: israel.azurecr.io/authentication-service/master:37a2610
+        image:  israel.azurecr.io/authentication-service/develop:latest
         ports:
         - name: auth-port
           containerPort: 8080

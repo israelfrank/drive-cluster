@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: permission-container 
-        image: israel.azurecr.io/permission-service/master:769171f
+        image: israel.azurecr.io/permission-service/develop:latest
         ports:
         - name: permision-port
           containerPort: 8080

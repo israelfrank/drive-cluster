@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: spike-container 
-        image: israel.azurecr.io/spike-service/master:bd69af0
+        image: israel.azurecr.io/spike-service/develop:latest
         ports:
         - name: spike-ports
           containerPort: 8080
