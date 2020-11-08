@@ -16,8 +16,7 @@ spec:
     spec:
       containers:
       - name: file-container 
-        image: israel.azurecr.io/file-service/master:083597c
-        image: israel.azurecr.io/authentication-service/master:37a2610
+        image: israel.azurecr.io/file-service/develop:latest
         ports:
         - name: file-port
           containerPort: 8080

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: upload-container 
-        image: israel.azurecr.io/upload-service/master:1d1fb04
+        image: israel.azurecr.io/upload-service/develop:latest
         ports:
         - name: upload-ports
           containerPort: 8080

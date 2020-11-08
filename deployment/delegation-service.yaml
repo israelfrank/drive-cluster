@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: delegation-container 
-        image: israel.azurecr.io/delegation-service/master:133164d
+        image:  israel.azurecr.io/delegation-service/develop:latest
         ports:
         - name: deleg-ports
           containerPort: 8080

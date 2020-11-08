@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: search-container 
-        image: israel.azurecr.io/search-service/master:624137d
+        image: israel.azurecr.io/search-service/develop:latest
         ports:
         - name: search-ports
           containerPort: 8080

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: download-container 
-        image: israel.azurecr.io/download-service/master:8c43c86
+        image: israel.azurecr.io/download-service/develop:latest
         ports:
         - name: download-ports
           containerPort: 8080

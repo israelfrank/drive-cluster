@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api-container 
-        image: israel.azurecr.io/api-gateway/master:9e1523c
+        image: israel.azurecr.io/api-gateway/develop:latest
         ports:
         - name: api-port
           containerPort: 8080
