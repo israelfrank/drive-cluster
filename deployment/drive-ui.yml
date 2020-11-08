@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: drive-container 
-        image: israel.azurecr.io/drive-ui/master:38121da
+        image:  israel.azurecr.io/drive-ui/develop:latest
         ports:
         - name: drive-port
           containerPort: 8080

@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: delegation-deployment
+  name: socket-deployment
   labels: 
-    app: delegation-service 
+    app: socket-service 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: delegation-service
+      app: socket-service
   template:
     metadata:
       labels:
-        app: delegation-service
+        app: socket-service
     spec:
       containers:
-      - name: delegation-container 
-        image: israel.azurecr.io/delegation-service/master:133164d
+      - name: socket-container 
+        image: israel.azurecr.io/socket-service/develop:latest
         ports:
-        - name: deleg-ports
+        - name: socket-port
           containerPort: 8080
         envFrom:
           - configMapRef:
